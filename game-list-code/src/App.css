@@ -1,0 +1,403 @@
+*{
+  margin: 0px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+html{
+  width: 100%;
+  margin: 0px;
+}
+
+body{
+  width: 100%;
+  height: 100vh;
+  margin: 0px;
+  position: relative;
+  z-index: -5;
+  background-color: rgb(40, 40, 40);
+}
+
+#root{
+  position: relative;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(40, 40, 40);
+  display: flex;
+  justify-content: center;
+}
+
+.list-cont::-webkit-scrollbar {
+  width: 10px;
+}
+
+.list-cont::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: rgb(39, 39, 39);
+}
+
+.list-cont::-webkit-scrollbar-thumb{
+  border-radius: 5px;
+  background-color: rgb(100, 100, 100);
+}
+
+.list-cont::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(78, 78, 78);
+}
+
+
+.container{
+  width: 100%;
+  height: 100vh;
+  margin: 0px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* nav start */
+
+nav{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo{
+  margin-left: 240px;
+  font-size: 55px;
+  font-family: 'Righteous', cursive;
+  color: white;
+}
+
+.signReg{
+  margin: 20px 200px 0 0;
+  font-size: 17px;
+  display: flex;
+}
+
+.sign, .register{
+    cursor: pointer;
+    width: 90px;
+    height: 40px;
+    margin-right: 50px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign{
+ border: 1px solid rgb(75, 192, 255);
+ color: rgb(75, 192, 255);
+}
+
+.register{
+  border: 1px solid rgb(47, 255, 82);
+  color: rgb(47, 255, 82);
+}
+
+.sign:hover{
+  background-color: rgb(75, 192, 255);
+  color: white;
+}
+
+.register:hover {
+  background-color: rgb(47, 255, 82);
+  color: white;
+}
+
+/* nav end */
+
+.App{
+  width: 85%;
+  height: 500px;
+  margin-top: 80px;
+  background-color: rgba(0, 0, 0, 0.502);
+  height: 100%;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  
+}
+
+/* Sign in start */
+
+#sign{
+  color: white;
+}
+
+/* sign in end */
+
+/* list section start */
+
+.left-cont {
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-cont{
+  width: 500px;
+  min-height: 80px;
+  margin-top: 18px;
+  padding: 0 20px;
+  background-color: rgb(40, 40, 40);
+  border-radius: 10px;
+  /* box-shadow: 0 0 5px rgba(192, 192, 192, 0.728); */
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#search{
+  position: relative;
+  z-index: 2;
+  width: 330px;
+  height: 35px;
+  border-radius: 8px 0 0 8px;
+}
+
+#btn{
+  position: relative;
+  z-index: 2;
+  width: 100px;
+  height: 35px;
+  background-color: rgb(40, 40, 40);
+  color: rgb(248, 50, 208);
+  border: 1px solid rgb(248, 50, 208);
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#btn:hover {
+  background-color: rgb(248, 50, 208);
+  color: white;
+}
+
+.not-applic{
+  position: relative;
+  z-index: 1;
+  width: 430px;
+  height: 50px;
+  margin-top: -45px;
+  padding-bottom: 5px;
+  background-color: rgb(230, 109, 109);
+  border-radius: 0 0 10px 10px;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.list-cont{
+  width: 500px;
+  height: 470px;
+  margin: 15px 20px 0 0;
+  padding-left: 0;
+  background-color: rgb(40, 40, 40);
+  border-radius: 10px;
+  /* box-shadow: 0 0 5px rgba(192, 192, 192, 0.728);   */
+  overflow-x: scroll;
+  overflow-x: hidden;
+}
+
+
+.list-item{
+  width: auto;
+  height: 78.3px;
+  border: 2px solid rgba(52, 52, 52);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.image-container{
+  width: 114px;
+  height: 63px;
+  margin: 0 0 0 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 7px;
+}
+
+li{
+  height: 63px;
+  width: 120px;
+  padding: 0 10px;
+  margin-right: 80px;
+  border: 1px solid rgb(61, 61, 61);
+  border-radius: 5px;
+  font-size: 16px;
+  list-style: none;
+  color: rgb(150, 150, 150);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.select-cont{
+  height: 63px;
+  margin-right: 10px;
+  border: 1px solid rgb(61, 61, 61);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.select{
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  margin: 0 8px;
+  box-shadow: 0 0 5px rgba(146, 146, 146, 0.728);
+  border-radius: 50%;
+}
+
+.red{
+  background-color: rgb(248, 50, 208);
+}
+
+.blue{
+  background-color: rgb(75, 192, 255);
+}
+
+.green{
+  background-color: rgb(47, 255, 82);
+}
+
+/* list section end */
+
+/* data representation satrt */
+
+
+.data-cont {
+  width: 500px;
+  height: 600px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.graph-cont{
+  width: 500px;
+  height: 150px;
+  background-color: rgb(40, 40, 40);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.graph{
+  width: 420px;
+  height: 18px;
+  box-shadow: 0 0 5px rgba(146, 146, 146, 0.728);
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lines{
+  width: 1px;
+  height: 18px;
+  background-color: rgb(217, 217, 217);
+  
+}
+
+.number{
+  position:relative;
+  top: 18px;
+  left: -8px;
+  color: rgba(146, 146, 146, 0.473);
+}
+
+table{
+  width: 500px;
+  height: 380px;
+  background-color: rgb(40, 40, 40);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+tbody{
+  width: 450px;
+  height: 300px;
+  box-shadow: 0 0 5px rgba(146, 146, 146, 0.728);
+  border-radius: 5px;
+  font-size: 16px;
+  color: white;
+}
+
+
+th{
+  min-width: 100px;
+  display: flex;
+  justify-content: space-around;
+}
+
+tr{
+  width: 450px;
+  display: flex;
+  justify-content: center;
+}
+
+.table-game, .table-start, .table-fin, .table-comp{
+  width: 195px;
+  height: 45px;
+  margin-top: 22px;
+  border-radius: 20px 0 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+.table-game{
+  background-color: gray;
+}
+
+.table-start{
+  background-color: rgb(248, 50, 208);
+}
+
+.table-fin{
+ background-color: rgb(75, 192, 255);
+}
+
+.table-comp{
+ background-color: rgb(47, 255, 82);  
+}
+
+.table-num{
+  width: 195px;
+  height: 45px;
+  margin-top: 22px;
+  background-color: rgb(30, 30, 30);
+  border-radius: 0 20px 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+
+/* data representation end */
