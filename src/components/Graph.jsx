@@ -9,7 +9,7 @@ export default function Graph({graphSeg, log}) {
         return {background: `linear-gradient(to right, rgb(248, 50, 208) ${startPerc}%, rgb(75, 192, 255) ${startPerc}%, rgb(75, 192, 255) ${completePerc}% ,rgb(47, 255, 82) ${completePerc}%)`}
     }
    let linesArr = Array.from({length: (log.length/5)}, (e, i) => i)
-   console.log(linesArr);
+//    console.log(linesArr);
             
     let lines = log.map((item) => {
             let number = log.indexOf(item)

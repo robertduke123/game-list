@@ -50,7 +50,7 @@ class App extends Component {
               let obj = Object.assign({}, data)
               this.setState({personalList : obj})
             })
-            console.log(this.state);
+            // console.log(this.state);
   }
 
   loadUser = (data) => {
@@ -133,7 +133,7 @@ class App extends Component {
               document.querySelector('#search').value = ''      
             } 
             } else {
-              console.log('n/a please try again');
+              // console.log('n/a please try again');
               this.setState(prevState => ({
                 ...prevState,
                 isThere: false
@@ -150,21 +150,30 @@ class App extends Component {
                 })
             })
             .then(res => res.json())
-            .then(console.log)
+            // .then(console.log)
           })
-          console.log(this.state.personalList);
+          // console.log(this.state.personalList);
            
           
-        console.log(this.state);
+        // console.log(this.state);
     }
     
   
     onActive = (e, ver) => {
-    let name = e.target.parentNode.previousSibling.innerText
-    let number = this.state.log.indexOf(name)
+    let selected = e.target.parentNode.previousSibling.previousSibling.innerText
+
+    let newLog = []
+    this.state.log.forEach(name => { let newName = name.charAt(0).toUpperCase() + name.slice(1)
+      newLog.push(newName)});
+      console.log(newLog);
+
+    let number = newLog.indexOf(selected)
+    let name = this.state.log[number]
     let currentStart = this.state.graphSeg.started
     let currentFinish = this.state.graphSeg.finish
     let currentComplete = this.state.graphSeg.complete    
+
+    console.log(name, number);
     
     if(ver === 'one' && this.state.personalList[number].completion !== 'started') { 
       let newItem = {name: name,
@@ -342,10 +351,53 @@ class App extends Component {
         })
         .then(res => res.json())
     }    
-    console.log(this.state)  
+    // console.log(this.state)  
   }
   
+  itemDelete = (e) => {
+    let item = e.target.previousSibling.innerHTML
+    let log = this.state.log
+    let pers = this.state.personalList
+    let index = log.indexOf(item)
 
+    fetch('http://localhost:3000/log_delete', {
+      method: 'put',
+            headers: {'Content-Type': 'application/Json'},
+            body: JSON.stringify({
+                id: this.state.user.id,
+                name: item
+            })
+      })
+      .then(res => res.json())
+
+      fetch('http://localhost:3000/pers_delete', {
+      method: 'delete',
+            headers: {'Content-Type': 'application/Json'},
+            body: JSON.stringify({
+                id: this.state.user.id,
+                name: item
+            })
+      })
+      .then(res => res.json())
+
+    log.splice(log.indexOf(item), 1)
+    delete pers[index]
+    let newPers = {}
+    let count = 0
+    log.forEach(item => {
+      newPers[count] = {}
+      count++
+    })
+    count = 0
+    Object.keys(pers).forEach(item => {
+      newPers[count] = pers[item]
+      count++
+    })
+
+   this.setState({log: log})
+   this.setState({personalList: newPers})
+   console.log(this.state.log, this.state.personalList);
+  }
 
   render() { 
     return (
@@ -356,7 +408,7 @@ class App extends Component {
           <div className='App'>         
             <div className='left-cont'>
               <Search onChange={this.onChange} onSearch={this.onSearch}  isThere={this.state.isThere}/>
-              <Main pers={this.state.personalList} onActive={this.onActive} log={this.state.log}/>
+              <Main pers={this.state.personalList} onActive={this.onActive} log={this.state.log} itemDelete={this.itemDelete}/>
             </div>          
               <Graph graphSeg={this.state.graphSeg} log={this.state.log}/>              
           </div> : (this.state.route === 'signin' ? 

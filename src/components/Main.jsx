@@ -2,19 +2,29 @@ import React from 'react';
 
 export default function Main(props) {
     let log = props.log
+    let newLog = []
+    let ref = []
+    log.forEach(name => {
+       let newName = name.charAt(0).toUpperCase() + name.slice(1)
+       newLog.push(newName) 
+       ref.push(newName)
+    });
+    newLog.sort()
+
+    console.log(log);
     
-    let listItems = log.map((item) => {
-                    let number = log.indexOf(item)
-                    console.log(Object.keys(props.pers).length);
-                    
+    let listItems = newLog.map((item) => {                    
+                    let number = ref.indexOf(item)
+
                     if(Object.keys(props.pers).length > 0) {
-                        console.log('test');
                     return(
                         <div key={'list Item' + number} className='list-item'>
                             <div key={'image' + number} className='image-container' style={{backgroundImage: `url(${props.pers[number].image})`}}></div>
                             
 
                             <li key={'list name' + number} >{item}</li>
+
+                            <div className="del" onClick={(e) => props.itemDelete(e)}>delete</div>
 
                             <div key={'list selector' + number} className='select-cont'>
                                 <div
