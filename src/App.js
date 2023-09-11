@@ -58,7 +58,6 @@ class App extends Component {
       id: data.id,
       name: data.name,
       email: data.email,
-      password: data.password,
     }})
     this.setState({log: data.log})
     this.setState({graphSeg: {
@@ -84,15 +83,16 @@ class App extends Component {
       let item = this.state.search
       let itemSearch = this.state.search.replace(/\s/g, '-').toLocaleLowerCase()
 
-        fetch(`https://rawg-video-games-database.p.rapidapi.com/games/${itemSearch}?key=a8d817fa172443748735ff2d10862681`, {
-          method: 'GET',
-          headers: {
-            'X-RapidAPI-Key': '48bcd47c97msh29aeb9d40c8bed9p1b117bjsn539a69073325',
-            'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com'            
-            }
-            })
+        fetch('http://localhost:3000/search', {
+          method: 'PUT',
+          headers: {'Content-Type': 'application/Json'},
+          body: JSON.stringify({
+            itemSearch: itemSearch
+          })
+        })
             .then(result => result.json())
             .then(data => {
+              console.log(data);
                if(data.slug === itemSearch) {
               if( !this.state.log.includes(item)) {
                 if(this.state.search.length > 0) {
@@ -115,7 +115,7 @@ class App extends Component {
                   } else {
                     this.setState({log: [item]})
                     this.setState({personalList: { 
-                      [0] :{
+                      0 :{
                       name: item, 
                       completion: 'started',
                       image: data.background_image
@@ -356,16 +356,22 @@ class App extends Component {
   
   itemDelete = (e) => {
     let item = e.target.previousSibling.innerHTML
-    let log = this.state.log
+    let log = this.state.log 
+    let newLog = []
+    log.forEach(name => { let newName = name.charAt(0).toUpperCase() + name.slice(1)
+      newLog.push(newName)});
+    let index = newLog.indexOf(item)
+    let name = log[index]
     let pers = this.state.personalList
-    let index = log.indexOf(item)
+    let select = pers[index].completion
 
     fetch('http://localhost:3000/log_delete', {
       method: 'put',
             headers: {'Content-Type': 'application/Json'},
             body: JSON.stringify({
                 id: this.state.user.id,
-                name: item
+                name: name,
+                select: select
             })
       })
       .then(res => res.json())
@@ -375,12 +381,12 @@ class App extends Component {
             headers: {'Content-Type': 'application/Json'},
             body: JSON.stringify({
                 id: this.state.user.id,
-                name: item
+                name: name
             })
       })
       .then(res => res.json())
 
-    log.splice(log.indexOf(item), 1)
+    log.splice(log.indexOf(name), 1)
     delete pers[index]
     let newPers = {}
     let count = 0
@@ -396,25 +402,30 @@ class App extends Component {
 
    this.setState({log: log})
    this.setState({personalList: newPers})
-   console.log(this.state.log, this.state.personalList);
+   this.setState(prevState => ({
+    graphSeg: {
+      ...prevState.graphSeg,
+      [select]: prevState.graphSeg[select] - 1
+    } 
+   }))
   }
 
   render() { 
     return (
       <div className='container'>
        <ParticlesBg  id='bg' type="cobweb" color='#ffffff' bg={true}/>
-       <Nav signedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange}/>
-       {this.state.route === 'home' ?
+       <Nav signedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} user={this.state.user}/>
+       {this.state.route === 'signin' ? 
+          <SignIn loadUser={this.loadUser} loadPersonal={this.loadPersonal} onRouteChange={this.onRouteChange}/> :
+          this.state.route === 'register' ?
+          <Register loadUser={this.loadUser} loadPersonal={this.loadPersonal} onRouteChange={this.onRouteChange}/> :  
           <div className='App'>         
             <div className='left-cont'>
               <Search onChange={this.onChange} onSearch={this.onSearch}  isThere={this.state.isThere}/>
               <Main pers={this.state.personalList} onActive={this.onActive} log={this.state.log} itemDelete={this.itemDelete}/>
             </div>          
               <Graph graphSeg={this.state.graphSeg} log={this.state.log}/>              
-          </div> : (this.state.route === 'signin' ? 
-          <SignIn loadUser={this.loadUser} loadPersonal={this.loadPersonal} onRouteChange={this.onRouteChange}/> :
-          <Register loadUser={this.loadUser} loadPersonal={this.loadPersonal} onRouteChange={this.onRouteChange}/>   
-          )
+          </div>
        }
         
       </div>

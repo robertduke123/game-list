@@ -14,6 +14,7 @@ export default function Nav(props) {
                 >Register</p>
             </div> :
             <div className='signReg'>
+                <h1 className='userName'>Welcome {props.user.name.charAt(0).toUpperCase() + props.user.name.slice(1)}</h1>
                 <p className='sign'
                 onClick={() => props.onRouteChange('signin', false)}
                 >Sign Out</p>

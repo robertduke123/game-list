@@ -85,7 +85,7 @@ class SignIn extends Component{
                         href="#0" 
                         className="f6 link dim white db"
                         style={{cursor: 'pointer'}}
-                        onClick={() => onRouteChange('register')}
+                        onClick={() => onRouteChange('register', false)}
                         >Register</p>
                     </div>
                 </form>

@@ -36,11 +36,10 @@ class Register extends Component{
         })
         .then(res => res.json())
         .then(user => {
-            if(user){
+            if(user.id){
                 // this.props.loadUser(user)
                 // this.props.loadPersonal(user)
-                this.props.onRouteChange('signin')
-                console.log(user);
+                this.props.onRouteChange('signin', false)
             }
         })
     }
