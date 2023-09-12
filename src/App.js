@@ -38,7 +38,8 @@ class App extends Component {
   }
 
   loadPersonal = (data) => {
-    fetch('https://game-list-backend.onrender.com/pers'
+    fetch(
+      'https://game-list-backend.onrender.com/pers'
     // 'http://localhost:3000/pers'
     , {
                 method: 'put',
@@ -85,7 +86,8 @@ class App extends Component {
       let item = this.state.search
       let itemSearch = this.state.search.replace(/\s/g, '-').toLocaleLowerCase()
 
-        fetch('https://game-list-backend.onrender.com/search'
+        fetch(
+          'https://game-list-backend.onrender.com/search'
         // 'http://localhost:3000//search'
         , {
           method: 'PUT',
@@ -143,7 +145,8 @@ class App extends Component {
                 isThere: false
               }))
             }
-            fetch('https://game-list-backend.onrender.com/entries'
+            fetch(
+              'https://game-list-backend.onrender.com/entries'
             // 'http://localhost:3000//entries'
             , {
                 method: 'put',
@@ -229,7 +232,8 @@ class App extends Component {
           }
       }))
     }      
-    fetch('https://game-list-backend.onrender.com/select'
+    fetch(
+      'https://game-list-backend.onrender.com/select'
     // 'http://localhost:3000/select'
     , {
           method: 'put',
@@ -290,7 +294,8 @@ class App extends Component {
           }
       }))
     }  
-    fetch('https://game-list-backend.onrender.com/select'
+    fetch(
+      'https://game-list-backend.onrender.com/select'
     // 'http://localhost:3000/select'
     , {
             method: 'put',
@@ -350,7 +355,8 @@ class App extends Component {
           }
       }))
     }  
-    fetch('https://game-list-backend.onrender.com/select'
+    fetch(
+      'https://game-list-backend.onrender.com/select'
     // 'http://localhost:3000/select'
     , {
             method: 'put',
@@ -377,7 +383,8 @@ class App extends Component {
     let pers = this.state.personalList
     let select = pers[index].completion
 
-    fetch('https://game-list-backend.onrender.com/log_delete'
+    fetch(
+      'https://game-list-backend.onrender.com/log_delete'
     // 'http://localhost:3000/log_delete'
     , {
       method: 'put',
@@ -390,7 +397,8 @@ class App extends Component {
       })
       .then(res => res.json())
 
-      fetch('https://game-list-backend.onrender.com/pers_delete'
+      fetch(
+        'https://game-list-backend.onrender.com/pers_delete'
       // 'http://localhost:3000/pers_delete'
       , {
       method: 'delete',
