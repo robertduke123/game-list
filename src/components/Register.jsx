@@ -25,7 +25,10 @@ class Register extends Component{
 
     onSubmitRegister = (e) => {
         e.preventDefault()
-        fetch('https://game-list-backend.onrender.com/register', {
+        fetch(
+            // 'http://localhost:3000/register'
+        'https://game-list-backend.onrender.com/register'
+        , {
             method: 'post',
             headers: {'Content-Type': 'application/Json'},
             body: JSON.stringify({
