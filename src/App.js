@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   loadPersonal = (data) => {
-    fetch('http://localhost:3000/pers', {
+    fetch('https://game-list-backend.onrender.com/pers', {
                 method: 'put',
                 headers: {'Content-Type': 'application/Json'},
                 body: JSON.stringify({
@@ -83,7 +83,7 @@ class App extends Component {
       let item = this.state.search
       let itemSearch = this.state.search.replace(/\s/g, '-').toLocaleLowerCase()
 
-        fetch('http://localhost:3000/search', {
+        fetch('https://game-list-backend.onrender.com/search', {
           method: 'PUT',
           headers: {'Content-Type': 'application/Json'},
           body: JSON.stringify({
@@ -139,7 +139,7 @@ class App extends Component {
                 isThere: false
               }))
             }
-            fetch('http://localhost:3000/entries', {
+            fetch('https://game-list-backend.onrender.com/entries', {
                 method: 'put',
                 headers: {'Content-Type': 'application/Json'},
                 body: JSON.stringify({
@@ -223,7 +223,7 @@ class App extends Component {
           }
       }))
     }      
-    fetch('http://localhost:3000/select', {
+    fetch('https://game-list-backend.onrender.com/select', {
           method: 'put',
           headers: {'Content-Type': 'application/Json'},
           body: JSON.stringify({
@@ -282,7 +282,7 @@ class App extends Component {
           }
       }))
     }  
-    fetch('http://localhost:3000/select', {
+    fetch('https://game-list-backend.onrender.com/select', {
             method: 'put',
             headers: {'Content-Type': 'application/Json'},
             body: JSON.stringify({
@@ -340,7 +340,7 @@ class App extends Component {
           }
       }))
     }  
-    fetch('http://localhost:3000/select', {
+    fetch('https://game-list-backend.onrender.com/select', {
             method: 'put',
             headers: {'Content-Type': 'application/Json'},
             body: JSON.stringify({
@@ -365,7 +365,7 @@ class App extends Component {
     let pers = this.state.personalList
     let select = pers[index].completion
 
-    fetch('http://localhost:3000/log_delete', {
+    fetch('https://game-list-backend.onrender.com/log_delete', {
       method: 'put',
             headers: {'Content-Type': 'application/Json'},
             body: JSON.stringify({
@@ -376,7 +376,7 @@ class App extends Component {
       })
       .then(res => res.json())
 
-      fetch('http://localhost:3000/pers_delete', {
+      fetch('https://game-list-backend.onrender.com/pers_delete', {
       method: 'delete',
             headers: {'Content-Type': 'application/Json'},
             body: JSON.stringify({
