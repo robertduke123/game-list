@@ -10,11 +10,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'tachyons'
 import './App.css';
 
-
+// 
 
 class App extends Component {
   constructor() {
-    super()
+    super() 
     this.state = { 
     authorization: '',
     search: '',
