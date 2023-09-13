@@ -20,7 +20,7 @@ class SignIn extends Component{
 
     onSubmitSignIn = (e) => {
         e.preventDefault()
-
+        console.log(e.target.value);
         if(e.target.value === 'Demo') {
             fetch(
                 // 'http://localhost:3000/signin'
