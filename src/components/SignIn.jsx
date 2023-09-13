@@ -20,28 +20,54 @@ class SignIn extends Component{
 
     onSubmitSignIn = (e) => {
         e.preventDefault()
-        fetch(
-            // 'http://localhost:3000/signin'
-        'https://game-list-backend.onrender.com/signin'
-        , {
-            method: 'post',
-            headers: {'Content-Type': 'application/Json'},
-            body: JSON.stringify({
-                email: this.state.signInEmail,
-                password: this.state.signInPassword
+
+        if(e.target.value === 'Demo') {
+            fetch(
+                // 'http://localhost:3000/signin'
+            'https://game-list-backend.onrender.com/signin'
+            , {
+                method: 'post',
+                headers: {'Content-Type': 'application/Json'},
+                body: JSON.stringify({
+                    email: 'Demo',
+                    password: 'N/A'
+                })
             })
-        })
-        .then(res => res.json())
-        .then(
-            user => {
-            if(user.id){
-                this.props.loadUser(user)
-                this.props.loadPersonal(user)
-                this.props.onRouteChange('home')
-                console.log(user.name);
+            .then(res => res.json())
+            .then(
+                user => {
+                if(user.id){
+                    this.props.loadUser(user)
+                    this.props.loadPersonal(user)
+                    this.props.onRouteChange('home')
+                    console.log(user.name);
+                }
             }
+            )
+        } else {
+            fetch(
+                // 'http://localhost:3000/signin'
+            'https://game-list-backend.onrender.com/signin'
+            , {
+                method: 'post',
+                headers: {'Content-Type': 'application/Json'},
+                body: JSON.stringify({
+                    email: this.state.signInEmail,
+                    password: this.state.signInPassword
+                })
+            })
+            .then(res => res.json())
+            .then(
+                user => {
+                if(user.id){
+                    this.props.loadUser(user)
+                    this.props.loadPersonal(user)
+                    this.props.onRouteChange('home')
+                    console.log(user.name);
+                }
+            }
+            )
         }
-        )
     }
 
     render() {
@@ -90,6 +116,13 @@ class SignIn extends Component{
                         style={{cursor: 'pointer'}}
                         onClick={() => onRouteChange('register', false)}
                         >Register</p>
+
+                    <p 
+                        href="#0" 
+                        className="b br2 ph3 pv2 input-reset ba b--white white bg-transparent grow pointer f6 dib"
+                        style={{cursor: 'pointer'}}
+                        onClick={this.onSubmitSignIn}
+                        >Demo</p>
                     </div>
                 </form>
             </main>
