@@ -21,7 +21,7 @@ class SignIn extends Component{
     onSubmitSignIn = (e) => {
         e.preventDefault()
         console.log(e.target.innerHTML);
-        if(e.target.value === 'Demo') {
+        if(e.target.innerHTML === 'Demo') {
             fetch(
                 // 'http://localhost:3000/signin'
             'https://game-list-backend.onrender.com/signin'
