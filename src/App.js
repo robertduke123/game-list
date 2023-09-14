@@ -88,7 +88,7 @@ class App extends Component {
 
         fetch(
           'https://game-list-backend.onrender.com/search'
-        // 'http://localhost:3000//search'
+        // 'http://localhost:3000/search'
         , {
           method: 'PUT',
           headers: {'Content-Type': 'application/Json'},
@@ -98,7 +98,7 @@ class App extends Component {
         })
             .then(result => result.json())
             .then(data => {
-              console.log(data);
+              // console.log(data);
                if(data.slug === itemSearch) {
               if( !this.state.log.includes(item)) {
                 if(this.state.search.length > 0) {
@@ -137,17 +137,9 @@ class App extends Component {
               }                
               this.setState({search: ''})
               document.querySelector('#search').value = ''      
-            } 
-            } else {
-              // console.log('n/a please try again');
-              this.setState(prevState => ({
-                ...prevState,
-                isThere: false
-              }))
-            }
-            fetch(
+              fetch(
               'https://game-list-backend.onrender.com/entries'
-            // 'http://localhost:3000//entries'
+            // 'http://localhost:3000/entries'
             , {
                 method: 'put',
                 headers: {'Content-Type': 'application/Json'},
@@ -159,6 +151,14 @@ class App extends Component {
                 })
             })
             .then(res => res.json())
+            } 
+            } else {
+              // console.log('n/a please try again');
+              this.setState(prevState => ({
+                ...prevState,
+                isThere: false
+              }))
+            }
             // .then(console.log)
           })
           // console.log(this.state.personalList);
@@ -174,7 +174,7 @@ class App extends Component {
     let newLog = []
     this.state.log.forEach(name => { let newName = name.charAt(0).toUpperCase() + name.slice(1)
       newLog.push(newName)});
-      console.log(newLog);
+      // console.log(newLog);
 
     let number = newLog.indexOf(selected)
     let name = this.state.log[number]
@@ -182,7 +182,7 @@ class App extends Component {
     let currentFinish = this.state.graphSeg.finish
     let currentComplete = this.state.graphSeg.complete    
 
-    console.log(name, number);
+    // console.log(name, number);
     
     if(ver === 'one' && this.state.personalList[number].completion !== 'started') { 
       let newItem = {name: name,

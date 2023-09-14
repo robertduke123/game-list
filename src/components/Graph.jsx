@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function Graph({graphSeg, log}) {
+
     function createGraph() {
         let amount = graphSeg.started + graphSeg.finish + graphSeg.complete
         let startPerc = (graphSeg.started / amount) * 100
@@ -9,7 +10,7 @@ export default function Graph({graphSeg, log}) {
         return {background: `linear-gradient(to right, rgb(248, 50, 208) ${startPerc}%, rgb(75, 192, 255) ${startPerc}%, rgb(75, 192, 255) ${completePerc}% ,rgb(47, 255, 82) ${completePerc}%)`}
     }
    let linesArr = Array.from({length: (log.length/5)}, (e, i) => i)
-//    console.log(linesArr);
+   console.log(linesArr);
             
     let lines = log.map((item) => {
             let number = log.indexOf(item)
@@ -50,6 +51,8 @@ export default function Graph({graphSeg, log}) {
             let gap = (420/log.length) * diffNum
             let negGap = fiveGap - gap
 
+            console.log(minFive, diffNum, fiveGap, gap, negGap);
+
             return {marginLeft: `-${negGap}px`, height: '8px'}
 
         }
@@ -69,7 +72,7 @@ export default function Graph({graphSeg, log}) {
                     {log.length === 0 ? <div className='lines' style={{height: '8px'}}>
                         <div className='number' style={{top: '12.5px'}}>{'0' + (log.length + 1)}</div>
                     </div> : []}
-                    {log.length % 5 !== 0 ? <div className='lines' style={createGap()}>
+                    {log.length % 5 !== 0 && log.length > 10 ? <div className='lines' style={createGap()}>
                         <div className='number' style={{top: '12.5px'}}>{log.length}</div>
                     </div> : []}
                 </div>

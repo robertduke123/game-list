@@ -20,9 +20,9 @@ class SignIn extends Component{
 
     onSubmitSignIn = (e) => {
         e.preventDefault()
-        console.log(e.target.innerHTML);
+        // console.log(e.target.innerHTML);
         if(e.target.innerHTML === 'Demo') {
-            console.log('tested');
+            // console.log('tested');
             fetch(
                 // 'http://localhost:3000/signin'
             'https://game-list-backend.onrender.com/signin'
@@ -41,7 +41,7 @@ class SignIn extends Component{
                     this.props.loadUser(user)
                     this.props.loadPersonal(user)
                     this.props.onRouteChange('home')
-                    console.log(user.name);
+                    // console.log(user.name);
                 }
             }
             )
@@ -64,7 +64,7 @@ class SignIn extends Component{
                     this.props.loadUser(user)
                     this.props.loadPersonal(user)
                     this.props.onRouteChange('home')
-                    console.log(user.name);
+                    // console.log(user.name);
                 }
             }
             )

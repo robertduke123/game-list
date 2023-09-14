@@ -11,7 +11,7 @@ export default function Main(props) {
     });
     newLog.sort()
 
-    console.log(log);
+    // console.log(log);
     
     let listItems = newLog.map((item) => {                    
                     let number = ref.indexOf(item)
