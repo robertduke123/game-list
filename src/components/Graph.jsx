@@ -10,7 +10,6 @@ export default function Graph({graphSeg, log}) {
         return {background: `linear-gradient(to right, rgb(248, 50, 208) ${startPerc}%, rgb(75, 192, 255) ${startPerc}%, rgb(75, 192, 255) ${completePerc}% ,rgb(47, 255, 82) ${completePerc}%)`}
     }
    let linesArr = Array.from({length: (log.length/5)}, (e, i) => i)
-   console.log(linesArr);
             
     let lines = log.map((item) => {
             let number = log.indexOf(item)
@@ -50,8 +49,6 @@ export default function Graph({graphSeg, log}) {
             let fiveGap = (420/log.length) * 5
             let gap = (420/log.length) * diffNum
             let negGap = fiveGap - gap
-
-            console.log(minFive, diffNum, fiveGap, gap, negGap);
 
             return {marginLeft: `-${negGap}px`, height: '8px'}
 
